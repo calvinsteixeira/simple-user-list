@@ -31,7 +31,7 @@ export default function Page() {
           </button>
         </NavLink>
       </div>
-      <div className="mt-10 space-y-4 pb-10">
+      <div className="mt-10 pb-10">
         {isLoading ||
           (isRefetching && (
             <div className="flex gap-2 items-center text-primary">
@@ -55,11 +55,18 @@ export default function Page() {
             </button>
           </div>
         )}
-        {!isLoading &&
-          !isRefetching &&
-          data &&
-          data.length > 0 &&
-          data.map((user) => <UserCard key={user.id} user={user} />)}
+
+        <div className="flex flex-wrap gap-6">
+          {!isLoading &&
+            !isRefetching &&
+            data &&
+            data.length > 0 &&
+            data.map((user) => (
+              <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+                <UserCard key={user.id} user={user} />
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );
